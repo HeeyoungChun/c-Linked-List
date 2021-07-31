@@ -1,0 +1,67 @@
+#ifndef NUMBERLIST_H
+#define NUMBERLIST_H
+
+class NumberList
+{
+private:
+	struct ListNode
+	{
+		double value;
+		struct ListNode* next;
+	};
+	ListNode* head;
+public:
+	NumberList()
+	{
+		head = nullptr;
+	}
+	~NumberList();
+	void appendNode(double);
+	void insertNode(double);
+	void deleteNode(double);
+	void displayList()const;
+};
+#endif
+
+---------------------------------------------------------------------------------------------
+
+#include "NumberList.h"
+
+void NumberList::appendNode(double num)
+{
+	ListNode* newNode;
+	ListNode* nodePtr;
+
+	newNode = new ListNode;
+	newNode->value = num;
+	newNode->next = nullptr;
+
+	if (!head)
+		head = newNode;
+	else
+	{
+		nodePtr = head;
+		
+		while (nodePtr->next)
+			nodePtr = nodePtr->next;
+
+		nodePtr->next = newNode;
+	}
+}
+
+--------------------------------------------------------------------------------------------
+
+#include "NumberList.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	NumberList list;
+
+	list.appendNode(2.1);
+	list.appendNode(1.0);
+	list.appendNode(2.0);
+
+	return 0;
+}
